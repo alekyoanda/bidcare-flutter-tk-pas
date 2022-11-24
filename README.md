@@ -101,3 +101,6 @@
 - **Role atau peran pengguna beserta deskripsinya**
   1. Role umum belum login dan sudah login: Bisa melihat daftar barang lelang dan melihat detail tiap barang lelang, bisa melihat daftar kandidat penerima hasil lelang <br>
   2. Role Umum sudah login: Bisa melihat informasi lengkap pada dashboard, melihat dan membuat komentar barang lelang dan galang dana, membuat testimoni
+  <br>
+- **Alur pengintegrasian dengan _web service_**
+. . .
