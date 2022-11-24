@@ -11,7 +11,7 @@
 
 - **Nama aplikasi**: BidCare
 - **Fungsi aplikasi**: Aplikasi ini bertujuan untuk membantu masyarakat yang membutuhkan donasi berupa uang, dimana uang donasinya didapatkan melalui hasil lelang barang. Selain itu, aplikasi ini juga dapat menjadi platform jual beli barang lelang yang 70% hasil dari penjualan barang lelang akan disumbangkan kepada galang dana yang dipilih.
-- **Peran/aktor pengguna aplikasi**: ...
+- **Peran/aktor pengguna aplikasi**: Peserta Lelang, Resipien Donasi, Pengguna Umum
   
 - **Daftar modul yang akan diimplementasikan**
   1. **General User (Bryan)** => Segala sesuatu mencakup dasar sebuah website: dashboard, login, register, logout
@@ -74,10 +74,13 @@
   - Page =
     - Halaman FAQ (1 file dart)
     - Halaman form pertanyaan (1 file dart)
+    - Halaman form jawaban (1 file dart)
   - Halaman form =
     - Form pertanyaan
+    - Form jawaban
   - Asynchronous =
     - Posting pertanyaan
+    - Posting jawaban
   - Filter Informasi =
     - Jika belum login, maka tidak bisa bertanya (form pertanyaan tidak ditampilkan), tetapi tetap bisa melihat FAQ. Jika sudah login, maka hal tersebut bisa dilakukan
     <br>
