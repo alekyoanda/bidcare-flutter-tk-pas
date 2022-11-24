@@ -66,12 +66,6 @@
   - Halaman form =
     - Form pertanyaan
     - Form jawaban
-  - Asynchronous =
-    - Posting pertanyaan
-    - Posting jawaban
-  - Filter Informasi =
-    - Jika belum login, maka tidak bisa bertanya (form pertanyaan tidak ditampilkan), tetapi tetap bisa melihat FAQ. Jika sudah login, maka hal tersebut bisa dilakukan
-    <br>
   5. **Testimoni (Danendra)** => Segala sesuatu mencakup cerita dan testimoni dari resipien maupun user umum: form testimoni, kumpulan testimoni
   - Model: 
     - Testimoni dengan atribut: Foreign Key dari objek model User, target, dan cerita atau ucapan terima kasih
@@ -81,6 +75,5 @@
   - Halaman form:
     - Form testimoni
     <br>
-
-## Alur Pengintegrasian Dengan Web Service TK UTS
-TODO
+## Alur Pengintegrasian Dengan _web service_
+Integrasi projek aplikasi flutter dengan _web service_ dilakukan dengan menggunakan API endpoint pada data JSON yang terdapat di projek Django sebelumnya dengan respon berupa JsonResponse. Penghubungan, pengambilan, maupun penempatan data pada aplikasi flutter _mobile_ akan mengambil data dari aplkasi web yang sudah di-_deploy_ ke Heroku yang kemudian menggunakan _dependency_ `Http` melalui _HTTP request_ secara _asynchronous_.
