@@ -103,4 +103,4 @@
   2. Role Umum sudah login: Bisa melihat informasi lengkap pada dashboard, melihat dan membuat komentar barang lelang dan galang dana, membuat testimoni
   <br>
 - **Alur pengintegrasian dengan _web service_** <br>
-. . .
+Integrasi projek aplikasi flutter dengan _web service_ dilakukan dengan menggunakan API endpoint pada data JSON yang terdapat di projek Django sebelumnya dengan respon berupa JsonResponse. Penghubungan, pengambilan, maupun penempatan data pada aplikasi flutter _mobile_ akan mengambil data dari aplkasi web yang sudah di-_deploy_ ke Heroku yang kemudian menggunakan _dependency_ `Http` melalui _HTTP request_ secara _asynchronous_.
