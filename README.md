@@ -62,7 +62,15 @@
     - Halaman FAQ (1 file dart)
     - Halaman form pertanyaan (1 file dart)
   - Halaman form:
+    - Halaman form jawaban (1 file dart)
+  - Halaman form =
     - Form pertanyaan
+    - Form jawaban
+  - Asynchronous =
+    - Posting pertanyaan
+    - Posting jawaban
+  - Filter Informasi =
+    - Jika belum login, maka tidak bisa bertanya (form pertanyaan tidak ditampilkan), tetapi tetap bisa melihat FAQ. Jika sudah login, maka hal tersebut bisa dilakukan
     <br>
   5. **Testimoni (Danendra)** => Segala sesuatu mencakup cerita dan testimoni dari resipien maupun user umum: form testimoni, kumpulan testimoni
   - Model: 
