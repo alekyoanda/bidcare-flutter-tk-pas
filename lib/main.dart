@@ -1,5 +1,7 @@
+import 'package:bidcare/screens/dashboard.dart';
 import 'package:bidcare/screens/home.dart';
 import 'package:bidcare/screens/login.dart';
+import 'package:bidcare/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -20,14 +22,16 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter App',
+        title: 'BidCare',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           fontFamily: 'Open Sans',
         ),
-        home: const MyHomePage(title: 'Flutter App'),
+        home: const MyHomePage(title: 'BidCare'),
         routes: {
           "/login": (BuildContext context) => const MyLoginPage(),
+          "/register": (BuildContext context) => const MyRegisterPage(),
+          "/dashboard": (BuildContext context) => MyDashboardPage(),
         },
       ),
     );
