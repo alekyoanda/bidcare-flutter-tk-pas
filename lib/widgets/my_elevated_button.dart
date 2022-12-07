@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-
 class MyElevatedButton extends StatelessWidget {
   const MyElevatedButton({
     Key? key,
     this.backgroundColor,
+    this.size,
     required this.text,
     required this.onPressed,
     this.foregroundColor,
   }) : super(key: key);
+  final Size? size;
   final Text text;
   final Color? backgroundColor;
   final Color? foregroundColor;
@@ -18,7 +19,7 @@ class MyElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(340, 50),
+        fixedSize: (size != null) ? size : Size(340, 50),
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         textStyle: const TextStyle(

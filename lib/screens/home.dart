@@ -1,6 +1,7 @@
+import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../widget/my_elevated_button.dart';
+import '../widgets/my_elevated_button.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -16,10 +17,10 @@ class MyHomePage extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment(0.8, 1),
             colors: <Color>[
-              Color(0xFFEEFFF6),
-              Color(0xFF83F6C7),
-              Color(0xFF14EE96),
-              Color(0xFF0D8C54)
+              MyColor.whiteGreen,
+              MyColor.lightGreen1,
+              MyColor.lightGreen2,
+              MyColor.green1
             ], // Gradient from https://learnui.design/tools/gradient-generator.html
             tileMode: TileMode.mirror,
           ),
@@ -64,7 +65,8 @@ class MyHomePage extends StatelessWidget {
                         text: const Text("Login"),
                         backgroundColor: const Color(0xFF0D8C54),
                         onPressed: () {
-                          Navigator.pushNamed(context, "/login");
+                          Navigator.pushNamed(
+                              context, "/dashboard"); // p.s: cuman untuk liat hasil, nanti diganti /login 
                         },
                       ),
                     ),
