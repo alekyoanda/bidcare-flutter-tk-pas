@@ -1,6 +1,6 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+
+import '../widgets/my_search_bar.dart';
 
 class MyLelangMainPage extends StatefulWidget {
   const MyLelangMainPage({super.key});
@@ -12,8 +12,15 @@ class MyLelangMainPage extends StatefulWidget {
 class _MyLelangMainPageState extends State<MyLelangMainPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Lelang"),
+    return SafeArea(
+      child: Column(
+        children: const [
+          MySearchBar(
+            hintText: "Cari Barang Lelang..",
+            historyKey: "01",
+          ),
+        ],
+      ),
     );
   }
 }
