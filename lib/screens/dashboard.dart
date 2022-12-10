@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'profile.dart';
+
 class MyDashboardPage extends StatefulWidget {
   @override
   _MyDashboardPageState createState() => _MyDashboardPageState();
@@ -25,11 +27,12 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
       style: optionStyle,
       textAlign: TextAlign.center,
     ),
-    Text(
-      'Profile: Di profile nanti ada button untuk FAQ',
-      style: optionStyle,
-      textAlign: TextAlign.center,
-    ),
+    ProfilePage(),
+    // Text(
+    //   'Profile: Di profile nanti ada button untuk FAQ',
+    //   style: optionStyle,
+    //   textAlign: TextAlign.center,
+    // ),
   ];
 
   @override

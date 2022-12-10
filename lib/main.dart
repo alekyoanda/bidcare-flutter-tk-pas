@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
+import 'screens/customer_service/faq_form.dart';
+import 'screens/customer_service/faq_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,6 +35,8 @@ class MyApp extends StatelessWidget {
           "/login": (BuildContext context) => const MyLoginPage(),
           "/register": (BuildContext context) => const MyRegisterPage(),
           "/dashboard": (BuildContext context) => MyDashboardPage(),
+          "/faq_page": (BuildContext context) => const FAQPage(),
+          "/faq_form": (BuildContext context) => const FaqFormPage()
         },
       ),
     );
