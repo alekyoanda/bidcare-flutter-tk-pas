@@ -1,7 +1,10 @@
+import 'package:bidcare/model/pertanyaan.dart';
 import 'package:bidcare/widgets/accordion.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import '../../styles/colors.dart';
+import '../../widgets/my_elevated_button.dart';
 import 'faq_form.dart';
 import 'fetch_faq.dart';
 
@@ -10,31 +13,39 @@ class FAQPage extends StatefulWidget {
 
     @override
     // ignore: library_private_types_in_public_api
-    _FAQPageState createState() => _FAQPageState();
+    State<FAQPage> createState() => _FAQPageState();
 }
 
 class _FAQPageState extends State<FAQPage> {
     Future dataFaq = fetchFAQ();
 
-    static List<String> listPertanyaan = [];
-    static List<String> listKategori = [];
+    static List<Pertanyaan> listPertanyaan = [];
 
     @override
     Widget build(BuildContext context) {
         return Scaffold(
+            backgroundColor: MyColor.whiteGreen,
             appBar: AppBar(
-                title: const Text('FAQ'),
+                title: const Text('Customer Service', style: TextStyle(color: Colors.white),),
+                backgroundColor: MyColor.darkGreen,
+                leading: BackButton(
+                  onPressed: () => Navigator.pushNamed(context, "/dashboard")
+                )
             ),
 
             body: 
             ListView(
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
+
                 Container(
-                  margin: const EdgeInsets.all(30),
+                  margin: const EdgeInsets.all(40),
                   child: const Text(
                     "Frequently Asked Questions",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: MyColor.darkGreen),
                   )
                 ),
                 
@@ -85,12 +96,36 @@ class _FAQPageState extends State<FAQPage> {
                   }
                 ),
                 
+                const SizedBox(
+                  height: 30,
+                ),
+
+                Center(
+                  child: MyElevatedButton(
+                    backgroundColor: MyColor.green1,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const FaqFormPage()),
+                      );
+                    },
+                    text: const Text(
+                        "Mau Nanya",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                )
+                ),
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 listPertanyaan.isNotEmpty ? Container(
                   margin: const EdgeInsets.only(top:30, left:30, bottom:15, right:30),
                   child: const Text(
                     "Pending Questions",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyColor.darkGreen),
                   )
                 ) : Container(),
                 
@@ -99,7 +134,7 @@ class _FAQPageState extends State<FAQPage> {
                   child: const Text(
                     "Tunggu sebentar yaa, customer service kami akan segara menjawab 😊",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: MyColor.darkGreen),
                   )
                 ) : Container(),
 
@@ -114,38 +149,13 @@ class _FAQPageState extends State<FAQPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Accordion(
-                          title: listPertanyaan[index],
+                          title: listPertanyaan[index].teksPertanyaan,
                           content: "",
-                          kategori: listKategori[index],
+                          kategori: listPertanyaan[index].kategori,
                         ),
                       ],
                   ),
                   )
-                ),
-
-                const SizedBox(
-                  height: 20,
-                ),
-
-                Center(
-                  child: ElevatedButton(
-                    
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        minimumSize: const Size(120, 45),
-                        maximumSize: const Size(150, 45),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const FaqFormPage()),
-                      );
-                    },
-                    child: const Text(
-                        "Mau Nanya",
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                )
                 ),
 
                 const SizedBox(
@@ -162,7 +172,6 @@ class _FAQPageState extends State<FAQPage> {
 
 
 // memasukkan setiap data ke dalam array untuk ditampilkan
-void inputPertanyaan(String pertanyaan, String kategori){ 
-    _FAQPageState.listPertanyaan.add(pertanyaan);
-    _FAQPageState.listKategori.add(kategori);
+void inputPertanyaan(Pertanyaan newPertanyaan){ 
+    _FAQPageState.listPertanyaan.add(newPertanyaan);
 }
