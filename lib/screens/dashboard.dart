@@ -36,7 +36,7 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.whiteGreen,
-      body: Center(
+      body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(

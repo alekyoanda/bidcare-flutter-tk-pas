@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:input_history_text_field/input_history_text_field.dart';
 
-typedef VoidCallbackParamString = Void Function(String);
+typedef VoidCallbackParamString = void Function(String);
 
 class MySearchBar extends StatelessWidget {
   const MySearchBar({
