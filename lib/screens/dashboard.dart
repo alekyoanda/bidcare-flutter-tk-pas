@@ -1,4 +1,4 @@
-import 'package:bidcare/screens/lelang_main.dart';
+import 'package:bidcare/screens/lelang/lelang_main.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -41,27 +41,8 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.whiteGreen,
-      body: Column(
-        children: [
-        Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        Container(
-          margin: const EdgeInsets.only(bottom: 16),
-          child: Align(
-            alignment: Alignment.center,
-            child: MyElevatedButton(
-            text: const Text("Testimoni"),
-            backgroundColor: const Color(0xFF0D8C54),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const TestimoniPage()));
-            },
-            )
-          )
-        ),
-      ],
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -88,19 +69,19 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
               color: Colors.black,
               tabs: const [
                 GButton(
-                  icon: LineIcons.home,
+                  icon: Icons.home,
                   text: 'Dashboard',
                 ),
                 GButton(
-                  icon: LineIcons.alternateWavyMoneyBill,
+                  icon: Icons.gavel_rounded,
                   text: 'Lelang',
                 ),
                 GButton(
-                  icon: LineIcons.donate,
+                  icon: Icons.monetization_on_rounded,
                   text: 'Galang Dana',
                 ),
                 GButton(
-                  icon: LineIcons.user,
+                  icon: Icons.person,
                   text: 'Profile',
                 ),
               ],
