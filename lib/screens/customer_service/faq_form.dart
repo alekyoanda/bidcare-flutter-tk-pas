@@ -1,6 +1,9 @@
 import 'package:bidcare/model/pertanyaan.dart';
+import 'package:bidcare/screens/customer_service/fetch_cs.dart';
 import 'package:bidcare/widgets/my_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import 'faq_page.dart';
 
@@ -15,8 +18,9 @@ class _FaqFormState extends State<FaqFormPage> {
     final _formKey = GlobalKey<FormState>();
 
     String _pertanyaan = "";
-    late String _kategori = "Umum";
+    String? _kategori;
     List<String> listKategori = ['Umum', 'Galang', 'Lelang'];
+    bool isValid = false;
    
     bool isNumeric(String value){
         return int.tryParse(value) != null;
@@ -24,6 +28,7 @@ class _FaqFormState extends State<FaqFormPage> {
 
     @override
     Widget build(BuildContext context) {
+      final request = context.watch<CookieRequest>();
         return Scaffold(
             backgroundColor: MyColor.whiteGreen,
 
@@ -80,6 +85,13 @@ class _FaqFormState extends State<FaqFormPage> {
                                             _kategori = newValue!;
                                             });
                                         },
+
+                                        validator: (String? newValue) {
+                                            if (newValue == null || newValue.isEmpty) {
+                                                return 'Kategori harus dipilih!';
+                                            }
+                                            return null;
+                                        },
                                         
                                     
                                     ),
@@ -129,17 +141,32 @@ class _FaqFormState extends State<FaqFormPage> {
                                   backgroundColor: MyColor.green1,
                                   onPressed: () {
                                       if (_formKey.currentState!.validate()) {
-                                          _kategori = _kategori == "Umum" ? "UMUM" : 
-                                                      _kategori == "Galang" ? "GALANG" : "LELANG";
+                                        _kategori = _kategori == "Umum" ? "UMUM" : 
+                                                    _kategori == "Galang" ? "GALANG" : "LELANG";
+                                        Pertanyaan newPertanyaan = Pertanyaan(kategori: _kategori!, teksPertanyaan: _pertanyaan);
+                                        // inputPertanyaan(newPertanyaan);
+                                        join(request, newPertanyaan.teksPertanyaan, newPertanyaan.kategori);
+                                        
+                                        isValid = true;
 
-                                          Pertanyaan newPertanyaan = Pertanyaan(kategori: _kategori, teksPertanyaan: _pertanyaan);
-                                          inputPertanyaan(newPertanyaan);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => const FAQPage()),
+                                        );
                                           
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => const FAQPage()),
-                                          );
                                       }
+
+                                      
+
+                                      isValid? showDialog(context: context, builder: (BuildContext context) { 
+                                        return const AlertDialog(
+                                        title: Text("Terima kasih!"),
+                                          content: Text("Pertanyaan berhasil dikirim, kami akan menjawab secepatnya"),
+                                        );
+                                        }
+                                      ) : null;
+
+                                      
                                   },
                                   text: const Text(
                                       "Kirim",
