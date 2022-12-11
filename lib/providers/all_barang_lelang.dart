@@ -1,4 +1,5 @@
 import 'package:bidcare/model/barang_lelang_model.dart';
+import 'package:bidcare/model/rincian_barang_lelang_models.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -33,6 +34,7 @@ class AllBarangLelang with ChangeNotifier {
         "Content-Type": "application/json",
       },
     );
+    print(response);
 
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));

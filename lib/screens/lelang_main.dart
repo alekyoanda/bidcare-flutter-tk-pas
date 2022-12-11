@@ -2,11 +2,13 @@ import 'dart:ffi';
 
 import 'package:bidcare/model/barang_lelang_model.dart';
 import 'package:bidcare/providers/all_barang_lelang.dart';
+import 'package:bidcare/screens/lelang_rincian.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:intl/intl.dart';
+import 'package:badges/badges.dart';
 
 import '../widgets/my_search_bar.dart';
 import '../widgets/my_text_icon_button.dart';
@@ -125,15 +127,26 @@ class _MyLelangMainPageState extends State<MyLelangMainPage> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (_, index) => IntrinsicHeight(
                               child: Card(
-                                margin: const EdgeInsets.only(bottom: 4),
+                                surfaceTintColor: MyColor.darkGreen,
+                                shadowColor: MyColor.darkGreen,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 3),
                                 child: InkWell(
+                                  customBorder: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
                                   onTap: () {
-                                    print(Provider.of<AllBarangLelang>(context,
-                                            listen: false)
-                                        .daftarBarangLelang[index]
-                                        .fields
-                                        .namaBarang
-                                        .toString());
+                                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyLelangRincianPage(
+                                lelang_id: snapshot.data![index].pk,
+                              ),
+                            ),
+                          );
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -236,8 +249,23 @@ class _MyLelangMainPageState extends State<MyLelangMainPage> {
                                                                   .grey[600]),
                                                         ),
                                                         Text(
-                                                          '${snapshot.data![index].fields.tanggalBerakhir.difference(DateTime.now()).inDays.toString()} hari',
-                                                          style: const TextStyle(
+                                                          (snapshot
+                                                                  .data![index]
+                                                                  .fields
+                                                                  .statusKeaktifan)
+                                                              ? '${snapshot.data![index].fields.tanggalBerakhir.difference(DateTime.now()).inDays.toString()} hari'
+                                                              : "Lelang selesai",
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: TextStyle(
+                                                              color: (snapshot
+                                                                      .data![
+                                                                          index]
+                                                                      .fields
+                                                                      .statusKeaktifan)
+                                                                  ? MyColor
+                                                                      .darkGreen
+                                                                  : Colors.red,
                                                               fontSize: 11,
                                                               fontWeight:
                                                                   FontWeight

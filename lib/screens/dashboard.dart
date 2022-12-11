@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'profile.dart';
+
 class MyDashboardPage extends StatefulWidget {
   @override
   _MyDashboardPageState createState() => _MyDashboardPageState();
@@ -25,11 +27,12 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
       style: optionStyle,
       textAlign: TextAlign.center,
     ),
-    Text(
-      'Profile: Di profile nanti ada button untuk FAQ',
-      style: optionStyle,
-      textAlign: TextAlign.center,
-    ),
+    ProfilePage(),
+    // Text(
+    //   'Profile: Di profile nanti ada button untuk FAQ',
+    //   style: optionStyle,
+    //   textAlign: TextAlign.center,
+    // ),
   ];
 
   @override
@@ -64,19 +67,19 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
               color: Colors.black,
               tabs: const [
                 GButton(
-                  icon: LineIcons.home,
+                  icon: Icons.home,
                   text: 'Dashboard',
                 ),
                 GButton(
-                  icon: LineIcons.alternateWavyMoneyBill,
+                  icon: Icons.gavel_rounded,
                   text: 'Lelang',
                 ),
                 GButton(
-                  icon: LineIcons.donate,
+                  icon: Icons.monetization_on_rounded,
                   text: 'Galang Dana',
                 ),
                 GButton(
-                  icon: LineIcons.user,
+                  icon: Icons.person,
                   text: 'Profile',
                 ),
               ],
