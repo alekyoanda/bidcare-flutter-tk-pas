@@ -1,4 +1,7 @@
+import 'package:bidcare/model/pertanyaan.dart';
+import 'package:bidcare/widgets/my_elevated_button.dart';
 import 'package:flutter/material.dart';
+import '../../styles/colors.dart';
 import 'faq_page.dart';
 
 class FaqFormPage extends StatefulWidget {
@@ -22,8 +25,14 @@ class _FaqFormState extends State<FaqFormPage> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
+            backgroundColor: MyColor.whiteGreen,
+
             appBar: AppBar(
-                title: const Text('Form FAQ'),
+                title: const Text('Customer Service', style: TextStyle(color: Colors.white),),
+                backgroundColor: MyColor.darkGreen,
+                leading: BackButton(
+                  onPressed: () => Navigator.pushNamed(context, "/faq_page")
+                )
             ),
             
             body: Form(
@@ -32,12 +41,30 @@ class _FaqFormState extends State<FaqFormPage> {
                     child: Container(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                                Container(
+                                  margin: const EdgeInsets.all(50),
+                                  child: const Text(
+                                    "Form Pertanyaan",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: MyColor.darkGreen),
+                                  )
+                                ),
+
+                                const SizedBox(height: 30),
+                                
                                 Container(
                                     alignment: Alignment.center,
                                     padding: const EdgeInsets.all(20.0),
-                                    child: DropdownButton(
+                                    child: DropdownButtonFormField(
                                         // disabledHint: Text('Pilih Kategori Pertanyaan'),
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        decoration: const InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          ),
+                                        alignment: AlignmentDirectional.centerStart,
                                         hint: const Text('Pilih Kategori Pertanyaan'),
                                         value: _kategori,
                                         icon: const Icon(Icons.keyboard_arrow_down),
@@ -56,7 +83,10 @@ class _FaqFormState extends State<FaqFormPage> {
                                         
                                     
                                     ),
+                                
                                 ),
+
+                                const SizedBox(height: 20),
 
                                 Padding(
                                     // Menggunakan padding sebesar 8 pixels
@@ -66,8 +96,6 @@ class _FaqFormState extends State<FaqFormPage> {
                                         decoration: InputDecoration(
                                             hintText: "Aku mau nanya..",
                                             labelText: "Pertanyaan",
-                                            // Menambahkan icon agar lebih intuitif
-                                            // icon: const Icon(Icons.people),
                                             // Menambahkan circular border agar lebih rapi
                                             border: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(5.0),
@@ -94,6 +122,31 @@ class _FaqFormState extends State<FaqFormPage> {
                                         },
                                     ),
                                 ),
+
+                                const SizedBox(height: 120),
+
+                                MyElevatedButton(
+                                  backgroundColor: MyColor.green1,
+                                  onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                          _kategori = _kategori == "Umum" ? "UMUM" : 
+                                                      _kategori == "Galang" ? "GALANG" : "LELANG";
+
+                                          Pertanyaan newPertanyaan = Pertanyaan(kategori: _kategori, teksPertanyaan: _pertanyaan);
+                                          inputPertanyaan(newPertanyaan);
+                                          
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => const FAQPage()),
+                                          );
+                                      }
+                                  },
+                                  text: const Text(
+                                      "Kirim",
+                                      style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              
                                 
                             ], 
                         ),
@@ -103,31 +156,7 @@ class _FaqFormState extends State<FaqFormPage> {
                 ),
 
             ),
-
-            floatingActionButton: Container( 
-                alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.only(left: 30),
-                child: TextButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
-                ),
-                onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                        _kategori = _kategori == "Umum" ? "UMUM" : 
-                                    _kategori == "Galang" ? "GALANG" : "LELANG";
-                        inputPertanyaan(_pertanyaan, _kategori);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const FAQPage()),
-                        );
-                    }
-                },
-                child: const Text(
-                    "Kirim",
-                    style: TextStyle(color: Colors.white),
-                ),
-            ),
-            ),
+            
         );
     }
 }

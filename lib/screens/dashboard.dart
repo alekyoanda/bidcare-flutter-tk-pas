@@ -1,9 +1,11 @@
-import 'package:bidcare/screens/lelang_main.dart';
+import 'package:bidcare/screens/lelang/lelang_main.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../widgets/my_elevated_button.dart';
+import 'Testimoni/testmoni_page.dart';
 import 'profile.dart';
 
 class MyDashboardPage extends StatefulWidget {
@@ -39,7 +41,7 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.whiteGreen,
-      body: Container(
+      body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(

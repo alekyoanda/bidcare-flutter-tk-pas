@@ -1,8 +1,8 @@
 import 'dart:ffi';
 
-import 'package:bidcare/model/barang_lelang_model.dart';
+import 'package:bidcare/model/lelang/barang_lelang_model.dart';
 import 'package:bidcare/providers/all_barang_lelang.dart';
-import 'package:bidcare/screens/lelang_rincian.dart';
+import 'package:bidcare/screens/lelang/lelang_rincian.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +10,8 @@ import 'package:sticky_headers/sticky_headers.dart';
 import 'package:intl/intl.dart';
 import 'package:badges/badges.dart';
 
-import '../widgets/my_search_bar.dart';
-import '../widgets/my_text_icon_button.dart';
+import '../../widgets/my_search_bar.dart';
+import '../../widgets/my_text_icon_button.dart';
 
 class MyLelangMainPage extends StatefulWidget {
   const MyLelangMainPage({super.key});
@@ -140,13 +140,14 @@ class _MyLelangMainPageState extends State<MyLelangMainPage> {
                                   ),
                                   onTap: () {
                                     Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyLelangRincianPage(
-                                lelang_id: snapshot.data![index].pk,
-                              ),
-                            ),
-                          );
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyLelangRincianPage(
+                                          lelang_id: snapshot.data![index].pk,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(

@@ -5,7 +5,7 @@
 import 'dart:convert';
 
 import 'package:bidcare/model/galang_dana_model.dart';
-import 'package:bidcare/model/komentar_lelang.dart';
+import 'package:bidcare/model/lelang/komentar_lelang.dart';
 
 import 'barang_lelang_model.dart';
 

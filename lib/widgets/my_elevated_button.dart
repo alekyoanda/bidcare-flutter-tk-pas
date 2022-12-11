@@ -9,6 +9,7 @@ class MyElevatedButton extends StatelessWidget {
     required this.onPressed,
     this.foregroundColor,
   }) : super(key: key);
+  final isDisabled = false;
   final Size? size;
   final Text text;
   final Color? backgroundColor;
@@ -18,6 +19,7 @@ class MyElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      
       style: ElevatedButton.styleFrom(
         fixedSize: (size != null) ? size : Size(340, 50),
         backgroundColor: backgroundColor,

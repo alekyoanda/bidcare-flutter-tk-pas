@@ -1,5 +1,5 @@
-import 'package:bidcare/model/barang_lelang_model.dart';
-import 'package:bidcare/model/rincian_barang_lelang_models.dart';
+import 'package:bidcare/model/lelang/barang_lelang_model.dart';
+import 'package:bidcare/model/lelang/rincian_barang_lelang_models.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
