@@ -66,7 +66,7 @@ class MyHomePage extends StatelessWidget {
                         backgroundColor: const Color(0xFF0D8C54),
                         onPressed: () {
                           Navigator.pushNamed(
-                              context, "/dashboard"); // p.s: cuman untuk liat hasil, nanti diganti /login 
+                              context, "/login"); // p.s: cuman untuk liat hasil, nanti diganti /login 
                         },
                       ),
                     ),
