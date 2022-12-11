@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bidcare/model/testimoni_model.dart';
 import 'package:bidcare/screens/Testimoni/testmoni_page.dart';
 
+import '../../styles/colors.dart';
+
 
 class AddTestimoniPage extends StatefulWidget {
   const AddTestimoniPage({super.key});
@@ -19,8 +21,10 @@ class _AddTestimoniPageState extends State<AddTestimoniPage> {
   @override
       Widget build(BuildContext context) {
           return Scaffold(
+              backgroundColor: MyColor.whiteGreen,
               appBar: AppBar(
                   title: const Text('Testimoni Baru'),
+                  backgroundColor: MyColor.darkGreen,
               ),
               // drawer: const NavigatorDrawer(),
               body: Form(
@@ -103,11 +107,11 @@ class _AddTestimoniPageState extends State<AddTestimoniPage> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
                         const Text("Notes:\n- Default nama: Anonymous\n- Jika bukan resipien, maka abaikan target",
-                        style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+                        style: TextStyle(color: Colors.black, fontSize: 16)),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         ElevatedButton(
                           onPressed: () {
                             if(_formKey.currentState!.validate()){
@@ -120,7 +124,7 @@ class _AddTestimoniPageState extends State<AddTestimoniPage> {
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(Colors.white)
                           ),
-                          child: const Text("Buat Testimoni Baru", style: TextStyle(color: Colors.black)),
+                          child: const Text("Buat Testimoni Baru", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),

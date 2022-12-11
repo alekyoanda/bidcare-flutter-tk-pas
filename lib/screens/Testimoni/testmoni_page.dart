@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bidcare/model/testimoni_model.dart';
 import 'package:bidcare/screens/Testimoni/add_testimoni_page.dart';
+import 'package:bidcare/styles/colors.dart';
 
 class TestimoniPage extends StatefulWidget {
   const TestimoniPage({super.key});
@@ -13,10 +14,11 @@ class _TestimoniPageState extends State<TestimoniPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColor.whiteGreen,
       appBar: AppBar(
         title: const Text('Testimoni BidCare'),
+        backgroundColor: MyColor.darkGreen,
       ),
-      // drawer: const NavigatorDrawer(),
       body: Column(
         children: [
           const SizedBox(height: 30),
@@ -24,7 +26,7 @@ class _TestimoniPageState extends State<TestimoniPage> {
             padding: const EdgeInsets.all(8.0),
             margin: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
-              color: const Color(0xFF34765f),
+              color: MyColor.darkGreen2,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
@@ -46,7 +48,7 @@ class _TestimoniPageState extends State<TestimoniPage> {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.white)
             ),
-            child: const Text("Buat Testimoni Baru", style: TextStyle(color: Colors.black)),
+            child: const Text("Buat Testimoni Baru", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
           ),
           const SizedBox(height: 30),
           FutureBuilder(
@@ -68,12 +70,16 @@ class _TestimoniPageState extends State<TestimoniPage> {
                         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
-                          color:Colors.white,
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [MyColor.lightGreen2, MyColor.lightGreen1]
+                          ),
                           borderRadius: BorderRadius.circular(15.0),
                           boxShadow: const [
                             BoxShadow(
                               color: Colors.black,
-                              blurRadius: 2,
+                              blurRadius: 8,
                               offset: Offset(4.0, 3.0)
                             )
                           ]
@@ -84,29 +90,38 @@ class _TestimoniPageState extends State<TestimoniPage> {
                             Text(
                               "${snapshot.data![index].fields.pesan}",
                               style: const TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            const SizedBox(height: 8),
-                            
+                            const SizedBox(height: 10),
                             Align(
                               alignment: Alignment.centerLeft,
                               child:Text(
                                 "From: ${snapshot.data![index].fields.nama}",
                                 style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold
                                 ),
                               )
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             Text(
                               "Target: ${snapshot.data![index].fields.target}",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
+                                background: Paint()
+                                  ..color = Colors.white
+                                  ..strokeWidth = 20
+                                  ..strokeJoin = StrokeJoin.round
+                                  ..strokeCap = StrokeCap.round
+                                  ..style = PaintingStyle.stroke,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
+                            const SizedBox(height: 5),
                           ],
                         ),
                       ),  
