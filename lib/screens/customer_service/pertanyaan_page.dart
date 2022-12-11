@@ -1,5 +1,4 @@
 import 'package:bidcare/model/pertanyaan.dart';
-import 'package:bidcare/screens/customer_service/pertanyaan_page.dart';
 import 'package:bidcare/widgets/accordion.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -9,16 +8,15 @@ import '../../widgets/my_elevated_button.dart';
 import 'faq_form.dart';
 import 'fetch_cs.dart';
 
-class FAQPage extends StatefulWidget {
-  const FAQPage({super.key});
+class PertanyaanPage extends StatefulWidget {
+  const PertanyaanPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  State<FAQPage> createState() => _FAQPageState();
+  State<PertanyaanPage> createState() => _PertanyaanPageState();
 }
 
-class _FAQPageState extends State<FAQPage> {
-  Future dataFaq = fetchFAQ();
+class _PertanyaanPageState extends State<PertanyaanPage> {
   Future dataPertanyaan = fetchPertanyaan();
 
   // static List<Pertanyaan> listPertanyaan = [];
@@ -34,7 +32,7 @@ class _FAQPageState extends State<FAQPage> {
           ),
           backgroundColor: MyColor.darkGreen,
           leading: BackButton(
-              onPressed: () => Navigator.pushNamed(context, "/dashboard"))),
+              onPressed: () => Navigator.pushNamed(context, "/faq_page"))),
 
       body: ListView(
         children: [
@@ -42,21 +40,44 @@ class _FAQPageState extends State<FAQPage> {
             height: 20,
           ),
 
+          // Container(
+          //   margin: const EdgeInsets.all(40),
+          //   child: const Text(
+          //     "Frequently Asked Questions",
+          //     textAlign: TextAlign.center,
+          //     style: TextStyle(
+          //         fontWeight: FontWeight.w900,
+          //         fontSize: 24,
+          //         color: MyColor.darkGreen),
+          //   )
+          // ),
+
           Container(
-            margin: const EdgeInsets.all(40),
+            margin: const EdgeInsets.only(
+                top: 30, left: 30, bottom: 15, right: 30),
             child: const Text(
-              "Frequently Asked Questions",
+              "Pending Questions",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                   color: MyColor.darkGreen),
-            )
-          ),
+          )),
+
+          Container(
+            margin: const EdgeInsets.only(
+                top: 0, left: 30, bottom: 20, right: 30),
+            child: const Text(
+              "Tunggu sebentar yaa, customer service kami akan segara menjawab 😊",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: MyColor.darkGreen),
+          )),
 
           FutureBuilder(
-            future: dataFaq,
-            // future: dataPertanyaan,
+            future: dataPertanyaan,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -65,7 +86,7 @@ class _FAQPageState extends State<FAQPage> {
                   return Column(
                     children: const [
                       Text(
-                        "Tidak ada faq :(",
+                        "Belum ada pertanyaan yang masuk :(",
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
                       SizedBox(height: 8),
@@ -85,9 +106,9 @@ class _FAQPageState extends State<FAQPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Accordion(
-                                title: snapshot.data![index].fields.pertanyaan[1],
-                                content: snapshot.data![index].fields.jawaban,
-                                kategori: snapshot.data![index].fields.pertanyaan[0],
+                                title: snapshot.data![index].teksPertanyaan,
+                                content: "",
+                                kategori: snapshot.data![index].kategori,
                               ),
                             ],
                           ),
@@ -120,22 +141,6 @@ class _FAQPageState extends State<FAQPage> {
 
           const SizedBox(
             height: 20,
-          ),
-
-          Center(
-            child: MyElevatedButton(
-            backgroundColor: MyColor.green1,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PertanyaanPage()),
-              );
-            },
-              text: const Text(
-                "Lihat Pending Questions",
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            )
           ),
 
           // listPertanyaan.isNotEmpty ? Container(
@@ -187,7 +192,7 @@ class _FAQPageState extends State<FAQPage> {
           const SizedBox(
             height: 30,
           ),
-
+          
         ],
       ),
     );

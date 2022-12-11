@@ -19,13 +19,13 @@ class _AccordionState extends State<Accordion> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(3),
-      color: widget.kategori == "UMUM" ? Colors.teal : 
-             widget.kategori == "GALANG" ? const Color.fromARGB(255, 62, 186, 107) : const Color.fromARGB(255, 71, 131, 93), 
+      color: widget.kategori.toUpperCase() == "UMUM" ? Colors.teal : 
+             widget.kategori.toUpperCase() == "GALANG" ? const Color.fromARGB(255, 62, 186, 107) : const Color.fromARGB(255, 71, 131, 93), 
       child: Column(children: [
         ListTile(
           // contentPadding: const EdgeInsetsDirectional.all(8),
-          leading: widget.kategori == "UMUM" ? const Icon(Icons.help, color: Colors.white) : 
-                   widget.kategori == "GALANG" ? const Icon(Icons.monetization_on_rounded, color: Colors.white) : 
+          leading: widget.kategori.toUpperCase() == "UMUM" ? const Icon(Icons.help, color: Colors.white) : 
+                   widget.kategori.toUpperCase() == "GALANG" ? const Icon(Icons.monetization_on_rounded, color: Colors.white) : 
                    const Icon(Icons.gavel_rounded, color: Colors.white,),
           minLeadingWidth : 25, 
           minVerticalPadding: 15,
