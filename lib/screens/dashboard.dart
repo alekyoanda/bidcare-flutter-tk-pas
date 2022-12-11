@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../widgets/my_elevated_button.dart';
+import 'Testimoni/testmoni_page.dart';
 import 'profile.dart';
 
 class MyDashboardPage extends StatefulWidget {
@@ -39,8 +41,27 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.whiteGreen,
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Column(
+        children: [
+        Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          child: Align(
+            alignment: Alignment.center,
+            child: MyElevatedButton(
+            text: const Text("Testimoni"),
+            backgroundColor: const Color(0xFF0D8C54),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TestimoniPage()));
+            },
+            )
+          )
+        ),
+      ],
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(

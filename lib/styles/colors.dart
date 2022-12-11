@@ -7,4 +7,5 @@ class MyColor {
   static const Color green1 = Color(0xFF0D8C54);
   static const Color green2 = Color(0xFF0A8E59);
   static const Color darkGreen = Color(0xFF2D5B46);
+  static const Color darkGreen2 = Color(0xFF34765f);
 }
