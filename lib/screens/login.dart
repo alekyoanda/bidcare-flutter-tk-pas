@@ -21,8 +21,8 @@ class _LoginPageState extends State<MyLoginPage> {
     });
   }
 
-  String username = "";
-  String password1 = "";
+  static String username = "";
+  static String password1 = "";
   String pesan = "";
   
   @override
@@ -82,13 +82,11 @@ class _LoginPageState extends State<MyLoginPage> {
                         labelText: 'Password',
                       ),
                       onChanged: (String? value) {
-                            print(value);
                             setState(() {
                                 password1 = value!;
                             });
                       },
                       onSaved: (String? value) {
-                            print(value);
                             setState(() {
                                 password1 = value!;
                             });
@@ -117,6 +115,7 @@ class _LoginPageState extends State<MyLoginPage> {
                           ); 
                     
                           print(response['status']);
+                          print(response['user_id']);
                           if (response['status'] == true) {
                             setState(() {
                                 pesan = "";

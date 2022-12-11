@@ -1,3 +1,4 @@
+import 'package:bidcare/screens/dashboard/dashboard_main.dart';
 import 'package:bidcare/screens/lelang/lelang_main.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +19,7 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Dashboard: Di dashboard nanti ada button untuk testimoni',
-      style: optionStyle,
-      textAlign: TextAlign.center,
-    ),
+    DashboardMainPage(),
     MyLelangMainPage(),
     Text(
       'Galang Dana',
