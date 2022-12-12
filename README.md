@@ -1,3 +1,4 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/5f5c8416-d860-47ba-ad1e-1d2cb2486226/branches/main/badge)](https://appcenter.ms)
 # Proyek Akhir Semester PBP
 
 > Kelompok C08:
@@ -7,7 +8,7 @@
 > 4. Emily Rumia Naomi
 > 5. Danendra Herdiansyah
 
-[![Build status](https://build.appcenter.ms/v0.1/apps/5f5c8416-d860-47ba-ad1e-1d2cb2486226/branches/main/badge)](https://appcenter.ms)
+Link aplikasi: [BidCare APK](https://install.appcenter.ms/orgs/bidcare/apps/bidcare/distribution_groups/public)
 ## Deskripsi Aplikasi
 
 - **Nama aplikasi**: BidCare
