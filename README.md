@@ -65,8 +65,11 @@
   - Page:
     - Halaman FAQ (1 file dart)
     - Halaman form pertanyaan (1 file dart)
+    - Halaman display pertanyaan (1 file dart)
+    - Halaman form jawaban (1 file dart)
   - Halaman form:
     - Form pertanyaan
+    - Form jawaban
     <br>
   5. **Testimoni (Danendra)** => Segala sesuatu mencakup cerita dan testimoni dari resipien maupun user umum: form testimoni, kumpulan testimoni
   - Model: 
