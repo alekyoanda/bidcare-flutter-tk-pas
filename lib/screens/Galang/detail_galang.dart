@@ -1,3 +1,4 @@
+import 'package:bidcare/widgets/card_lelang_builder,.dart';
 import 'package:flutter/material.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:bidcare/screens/Galang/http_galang.dart';
@@ -317,74 +318,9 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                           return ListView.builder(
                               itemCount: snapshot.data!.length,
                               shrinkWrap: true,
-                              itemBuilder: (_, index) => InkWell(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MyLelangRincianPage(
-                                                lelang_id:
-                                                    snapshot.data![index].pk,
-                                              ),
-                                            ));
-                                      },
-                                      child: Expanded(
-                                        child: Card(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 40, vertical: 16),
-                                            elevation: 5.0,
-                                            color: Colors.white,
-                                            child: Column(
-                                              children: [
-                                                ListTile(
-                                                  title: Text(
-                                                    snapshot.data![index].fields
-                                                        .namaBarang,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  subtitle: snapshot
-                                                          .data![index]
-                                                          .fields
-                                                          .statusKeaktifan
-                                                      ? const Text(
-                                                          "Aktif",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.red),
-                                                        )
-                                                      : const Text(
-                                                          "Tidak Aktif",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color:
-                                                                  Colors.green),
-                                                        ),
-                                                ),
-                                                Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            16.0),
-                                                    alignment:
-                                                        Alignment.centerRight,
-                                                    child: Text(
-                                                        "Bid Tertinggi: Rp ${snapshot.data![index].fields.bidTertinggi}",
-                                                        style: const TextStyle(
-                                                            color: MyColor
-                                                                .darkGreen,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold))),
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  ));
+                              physics: ClampingScrollPhysics(),
+                              itemBuilder: (_, index) =>
+                                  cardLelangBuilder(context, snapshot, index));
                         }
                       }
                     }),
@@ -546,6 +482,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                 );
               } else {
                 return ListView.builder(
+                    physics: ClampingScrollPhysics(),
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (_, index) => InkWell(
@@ -621,6 +558,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                 );
               } else {
                 return ListView.builder(
+                    physics: ClampingScrollPhysics(),
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (_, index) => InkWell(

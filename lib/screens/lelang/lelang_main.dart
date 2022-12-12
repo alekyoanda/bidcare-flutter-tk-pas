@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:bidcare/model/lelang/barang_lelang_model.dart';
 import 'package:bidcare/providers/all_barang_lelang.dart';
 import 'package:bidcare/screens/lelang/lelang_rincian.dart';
+import 'package:bidcare/screens/tahap_pengembangan.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +67,14 @@ class _MyLelangMainPageState extends State<MyLelangMainPage> {
                             Icons.category,
                             color: MyColor.green1,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyTahapPengembanganPage(),
+                              ),
+                            );
+                          },
                         ),
                       ),
                       const VerticalDivider(
@@ -83,7 +91,14 @@ class _MyLelangMainPageState extends State<MyLelangMainPage> {
                             Icons.filter_list,
                             color: MyColor.green1,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyTahapPengembanganPage(),
+                              ),
+                            );
+                          },
                         ),
                       )
                     ],

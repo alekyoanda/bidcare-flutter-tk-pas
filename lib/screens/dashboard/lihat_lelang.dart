@@ -69,19 +69,141 @@ class _LihatLelangState extends State<LihatLelang> {
                 );
               } else {
                 // ini harus diubah jadi return listview builder
-                return Container(
-                  margin: EdgeInsets.symmetric(vertical: 16),
-                  child: Expanded(
-                    child: ListView.builder(
-                      itemCount: snapshot.data?.length,
-                      itemBuilder: (_, index) =>
-                          cardLelangBuilder(context, snapshot, index),
-                    ),
-                  ),
+                return ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (_, index) =>
+                      cardLelangBuilder(context, snapshot, index),
                 );
               }
             }
           },
         ));
+  }
+
+  Container cardLelangBryan(
+      AsyncSnapshot<dynamic> snapshot, int index, BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+                color: snapshot.data?[index].fields.statusKeaktifan == false
+                    ? Colors.red
+                    : Colors.green,
+                blurRadius: 2.0)
+          ]),
+      child: Center(
+        child: Column(children: [
+          Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 15),
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                            color: MyColor.darkGreen,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800),
+                        child:
+                            Text("${snapshot.data?[index].fields.namaBarang}"),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 8),
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                            color: MyColor.darkGreen,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
+                        child:
+                            Text("${snapshot.data?[index].fields.deskripsi}"),
+                      ),
+                    ),
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const DefaultTextStyle(
+                                  style: TextStyle(
+                                      color: MyColor.darkGreen,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                  child: Text("Bid Mulai"),
+                                ),
+                                DefaultTextStyle(
+                                  style: const TextStyle(
+                                      color: MyColor.darkGreen,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                  child: Text(
+                                      "${snapshot.data?[index].fields.startingBid}"),
+                                ),
+                              ]),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const DefaultTextStyle(
+                                  style: TextStyle(
+                                      color: MyColor.darkGreen,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                  child: Text("Bid Tertinggi"),
+                                ),
+                                DefaultTextStyle(
+                                  style: const TextStyle(
+                                      color: MyColor.darkGreen,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                  child: Text(
+                                      "${snapshot.data?[index].fields.bidTertinggi}"),
+                                ),
+                              ]),
+                        ),
+                      ]),
+                  Container(
+                      height: 50,
+                      width: 120,
+                      padding: const EdgeInsets.only(top: 20),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(50),
+                            // maximumSize: const Size.fromWidth(50),
+                            backgroundColor: MyColor.darkGreen,
+                          ),
+                          child: const Text('Detail'),
+                          onPressed: () async {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyLelangRincianPage(
+                                  lelang_id: snapshot.data![index].pk,
+                                ),
+                              ),
+                            );
+                          })),
+                ]),
+          ),
+        ]),
+      ),
+    );
   }
 }
