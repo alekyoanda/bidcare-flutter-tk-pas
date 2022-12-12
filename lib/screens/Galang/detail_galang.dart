@@ -476,7 +476,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       child: TextButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            tambahKomentar(request, widget.pk, komentar);
+                            tambahKomentar(request, widget.pk.toString(), komentar);
                             showDialog(
                               context: context,
                               builder: (context) {
