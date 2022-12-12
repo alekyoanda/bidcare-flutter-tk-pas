@@ -1,5 +1,6 @@
 import 'package:bidcare/screens/dashboard/dashboard_main.dart';
 import 'package:bidcare/screens/lelang/lelang_main.dart';
+import 'package:bidcare/screens/Galang/galang_main.dart';
 import 'package:bidcare/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -21,11 +22,7 @@ class _MyDashboardPageState extends State<MyDashboardPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     DashboardMainPage(),
     MyLelangMainPage(),
-    Text(
-      'Galang Dana',
-      style: optionStyle,
-      textAlign: TextAlign.center,
-    ),
+    MyGalangMainPage(),
     ProfilePage(),
     // Text(
     //   'Profile: Di profile nanti ada button untuk FAQ',
