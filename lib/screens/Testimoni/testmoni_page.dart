@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bidcare/model/testimoni_model.dart';
+import 'package:bidcare/model/Testimoni/testimoni_model.dart';
 import 'package:bidcare/screens/Testimoni/add_testimoni_page.dart';
 import 'package:bidcare/styles/colors.dart';
 

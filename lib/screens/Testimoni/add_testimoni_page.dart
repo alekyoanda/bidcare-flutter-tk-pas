@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bidcare/model/testimoni_model.dart';
+import 'package:bidcare/model/Testimoni/testimoni_model.dart';
 import 'package:bidcare/screens/Testimoni/testmoni_page.dart';
 
 import '../../styles/colors.dart';
@@ -115,7 +115,7 @@ class _AddTestimoniPageState extends State<AddTestimoniPage> {
                         ElevatedButton(
                           onPressed: () {
                             if(_formKey.currentState!.validate()){
-                              // addTestimoni(nama, pesan, target);
+                              addTestimoni(context, nama, target, pesan);
                               Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (context) => const TestimoniPage()));

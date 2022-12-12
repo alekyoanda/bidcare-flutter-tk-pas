@@ -3,7 +3,10 @@
 //     final testimoniModel = testimoniModelFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 List<TestimoniModel> testimoniModelFromJson(String str) => List<TestimoniModel>.from(json.decode(str).map((x) => TestimoniModel.fromJson(x)));
 
@@ -82,18 +85,16 @@ Future<List<TestimoniModel>> fetchTestimoni() async {
   return listTestimoni;
 }
 
-// Future<dynamic> addTestimoni(String nama, String target, String pesan) async{
-//   var url = Uri.parse('https://bidcare.up.railway.app/testimoni/add-testimoni/');
-//   var response = await http.post(
-//     url,
-//     headers: {
-//       "Access-Control-Allow-Origin": "*",
-//       "Content-Type": "application/json; charset=utf-8",
-//     },
-//     body: {
-//       "nama" : nama,
-//       "target" : target,
-//       "pesan" : pesan,
-//     },
-//   return jsonDecode(response.body)["success"];
-// }
+addTestimoni(BuildContext context,String nama, String target, String pesan) async{
+  final request = context.read<CookieRequest>();
+  var url = Uri.parse('https://bidcare.up.railway.app/testimoni/add-testimoni/');
+  var response = await http.post(
+    url,
+    headers: request.headers,
+    body: {
+      "nama" : nama,
+      "target" : target,
+      "pesan" : pesan,
+    });
+  print(response.statusCode.toString());
+}
