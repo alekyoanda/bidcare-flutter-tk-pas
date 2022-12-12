@@ -425,7 +425,7 @@ class _MyBuatGalangState extends State<MyBuatGalangPage> {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       borderSide: const BorderSide(
-                                          width: 2.0, color: MyColor.darkGreen),
+                                          width: 1.0, color: MyColor.darkGreen),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),

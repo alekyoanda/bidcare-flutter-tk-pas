@@ -15,19 +15,19 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
   showImage(data){
      if(data == "Keluarga") {
         // Sumber -> https://www.kibrispdr.org/detail-12/gambar-gambar-orang-miskin.html
-        return Image.asset('assets/imageGalang/keluarga.png',height: 200,);
+        return Image.asset('assets/imageGalang/keluarga.jpg',height: 200,);
      } else if (data == "Teman") {
         // Sumber -> https://jatim.tribunnews.com/2019/12/10/4-layanan-pencegahan-bunuh-diri-di-indonesia-yang-bisa-bantu-penderita-depresi-anda-tak-sendiri
-        return Image.asset('assets/imageGalang/teman.png',height: 200,);
+        return Image.asset('assets/imageGalang/teman.jpg',height: 200,);
      } else if (data == "Pribadi") {
         // Sumber -> https://www.suara.com/health/2021/07/13/135136/4-cara-membantu-orang-terdekat-yang-telah-didiagnosis-depresi
-        return Image.asset('assets/imageGalang/pribadi.png',height: 200,);
+        return Image.asset('assets/imageGalang/pribadi.jpg',height: 200,);
      } else if (data == "Institusi") {
         // Sumber -> https://man3kotajambi.mdrsh.id/news/5358/kunjungan-ke-panti-asuhan-teratai-jaya.html
         return Image.asset('assets/imageGalang/institusi.jpg',height: 200,);
      } else {
         // Sumber -> https://www.hukumonline.com/berita/a/penjelasan-hukum-soal-tanggung-jawab-pemerintah-atas-bencana-alam-lt600ff4b1191b7/
-        return Image.asset('assets/imageGalang/other.png',height: 200,);
+        return Image.asset('assets/imageGalang/other.jpg',height: 200,);
      }
   }
   
