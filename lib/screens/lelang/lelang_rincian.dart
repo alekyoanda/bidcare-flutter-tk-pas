@@ -528,55 +528,24 @@ class _MyLelangRincianPageState extends State<MyLelangRincianPage> {
                                             "Lihat Detail Galang Dana"),
                                         onPressed: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      MyDetailGalangPage(
-                                                        pk: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .pk,
-                                                        tujuan: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .tujuan,
-                                                        judul: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .judul,
-                                                        deskripsi: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .deskripsi,
-                                                        terkumpul: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .terkumpul,
-                                                        target: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .target,
-                                                        tanggal_pembuatan: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .tanggalPembuatan,
-                                                        tanggal_berakhir: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .tanggalBerakhir,
-                                                        status_keaktifan: snapshot
-                                                            .data!
-                                                            .galangDanaTujuan
-                                                            .fields
-                                                            .statusKeaktifan,
-                                                      )));
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => MyDetailGalangPage(
+                                                      pk: snapshot.data!.galangDanaTujuan.pk,
+                                                      user : snapshot.data!.galangDanaTujuan.fields.user,
+                                                      tujuan: snapshot.data!.galangDanaTujuan.fields.tujuan,
+                                                      judul: snapshot.data!.galangDanaTujuan.fields.judul,
+                                                      deskripsi:
+                                                          snapshot.data!.galangDanaTujuan.fields.deskripsi,
+                                                      terkumpul:
+                                                          snapshot.data!.galangDanaTujuan.fields.terkumpul,
+                                                      target: snapshot.data!.galangDanaTujuan.fields.target,
+                                                      tanggal_pembuatan: snapshot.data!.galangDanaTujuan.fields.tanggalPembuatan,
+                                                      tanggal_berakhir: snapshot.data!.galangDanaTujuan.fields.tanggalBerakhir,
+                                                      status_keaktifan: snapshot.data!.galangDanaTujuan.fields.statusKeaktifan,
+                                                    )
+                                                  )
+                                                );
                                         }),
                                   )
                                 ],

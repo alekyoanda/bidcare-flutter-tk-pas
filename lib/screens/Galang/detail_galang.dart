@@ -7,6 +7,7 @@ import 'package:bidcare/screens/lelang/lelang_rincian.dart';
 
 class MyDetailGalangPage extends StatefulWidget {
   final int pk;
+  final int user;
   final String tujuan;
   final String judul;
   final String deskripsi;
@@ -19,6 +20,7 @@ class MyDetailGalangPage extends StatefulWidget {
   const MyDetailGalangPage({
     Key? key,
     required this.pk,
+    required this.user,
     required this.tujuan,
     required this.judul,
     required this.deskripsi,
@@ -60,7 +62,6 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
         backgroundColor: Colors.white,
         body: SafeArea(
             child: ListView(children: [
-
           // Judul
           Container(
               margin: const EdgeInsets.only(top: 35),
@@ -69,8 +70,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                 textAlign: TextAlign.center,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              )
-          ),
+              )),
 
           // Tujuan
           Container(
@@ -78,10 +78,71 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
               child: Text(
                 "#${widget.tujuan}ButuhBantuan",
                 textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 14,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
                     backgroundColor: Color.fromARGB(255, 255, 165, 0)),
-              )
+              )),
+
+          // Detail User
+          FutureBuilder(
+            future: fetchAkunGalang(widget.user),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.data == null) {
+                return const Text(
+                  "",
+                );
+              } else {
+                return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    shrinkWrap: true,
+                    itemBuilder: (_, index) => InkWell(
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            child: Center(
+                                child: Column(children: [
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 5),
+                                      child: const Icon(
+                                        Icons.person,
+                                        color: MyColor.darkGreen,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Text(
+                                        '${snapshot.data![index].first_name} ${snapshot.data![index].last_name}',
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ))
+                                  ]),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 6),
+                                      child: const Icon(
+                                        Icons.email,
+                                        color: MyColor.darkGreen,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Text('${snapshot.data![index].email}',
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ))
+                                  ]),
+                            ])),
+                          ),
+                        ));
+              }
+            },
           ),
 
           // Detail Uang
@@ -133,16 +194,17 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
           // Detail Tanggal
           Container(
               color: MyColor.whiteGreen,
-              margin: const EdgeInsets.only(top: 10, bottom: 10), 
-              padding: const EdgeInsets.only(left: 35, right: 35), 
+              margin: const EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 35, right: 35),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Tanggal Pembuatan
                   Column(children: [
                     Container(
-                      margin:
-                          const EdgeInsets.only(top: 40,),
+                      margin: const EdgeInsets.only(
+                        top: 40,
+                      ),
                       child: const Icon(
                         Icons.calendar_month,
                         color: MyColor.darkGreen,
@@ -150,8 +212,9 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       ),
                     ),
                     Container(
-                      margin:
-                          const EdgeInsets.only(top: 3,),
+                      margin: const EdgeInsets.only(
+                        top: 3,
+                      ),
                       child: const Text(
                         textAlign: TextAlign.center,
                         "Tanggal Pembuatan",
@@ -162,8 +225,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(
-                           bottom: 40),
+                      margin: const EdgeInsets.only(bottom: 40),
                       child: Text(
                         textAlign: TextAlign.center,
                         "${widget.tanggal_pembuatan.day} - ${widget.tanggal_pembuatan.month} - ${widget.tanggal_pembuatan.year}",
@@ -186,8 +248,9 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       ),
                     ),
                     Container(
-                      margin:
-                          const EdgeInsets.only(top: 3, ),
+                      margin: const EdgeInsets.only(
+                        top: 3,
+                      ),
                       child: const Text(
                         textAlign: TextAlign.center,
                         "Tanggal Berakhir",
@@ -198,8 +261,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 40),
+                      margin: const EdgeInsets.only(bottom: 40),
                       child: Text(
                         textAlign: TextAlign.center,
                         "${widget.tanggal_berakhir.day} - ${widget.tanggal_berakhir.month} - ${widget.tanggal_berakhir.year}",
@@ -240,8 +302,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                         if (snapshot.data!.length == 0) {
                           return Column(children: [
                             Container(
-                              margin:
-                                  const EdgeInsets.only(top: 10),
+                              margin: const EdgeInsets.only(top: 10),
                               child: const Text(
                                 "Galang Dana ini belum ada penyumbang:(",
                                 style: TextStyle(
@@ -262,11 +323,12 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>  MyLelangRincianPage(
-                                                    lelang_id: snapshot.data![index].pk,
-                                                  ),
-                                                  )
-                                                );
+                                              builder: (context) =>
+                                                  MyLelangRincianPage(
+                                                lelang_id:
+                                                    snapshot.data![index].pk,
+                                              ),
+                                            ));
                                       },
                                       child: Expanded(
                                         child: Card(
@@ -326,26 +388,26 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                         }
                       }
                     }),
+                // const SizedBox(
+                //   height: 10.0,
+                // ),
+                // TextButton(
+                //   onPressed: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyDetailGalangPage()
+                //           )
+                //         );
+                // },
+                //   child: const Text(
+                //     'Buat Lelang untuk Galang Dana ini!',
+                //     style: TextStyle(
+                //       color: MyColor.lightGreen1,
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
-                  height: 10.0,
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => MyDetailGalangPage()
-                      //           )
-                      //         );
-                        },
-                  child: const Text(
-                      'Buat Lelang untuk Galang Dana ini!',
-                        style: TextStyle(
-                          color: MyColor.lightGreen1,
-                        ),
-                      ),
-                  ),
-                 const SizedBox(
                   height: 20.0,
                 ),
               ])),
@@ -363,7 +425,6 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
               )),
 
           // Form Komentar
-
           Form(
             key: formKey,
             child: Container(
@@ -411,7 +472,8 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       child: TextButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            tambahKomentar(request, widget.pk, komentar);
+                            tambahKomentar(
+                                request, widget.pk.toString(), komentar);
                             showDialog(
                               context: context,
                               builder: (context) {
@@ -421,16 +483,27 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                                   elevation: 15,
                                   child: ListView(
                                     padding: const EdgeInsets.only(
-                                        top: 20, bottom: 20),
+                                        top: 40, bottom: 20),
                                     shrinkWrap: true,
                                     children: <Widget>[
-                                      const Icon(Icons.info_outline),
+                                      const Center(
+                                        child: SizedBox(
+                                          height: 30.0,
+                                          width: 30.0,
+                                          child: CircularProgressIndicator(
+                                            value: null,
+                                            strokeWidth: 4.0,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 15),
                                       const Center(
                                           child: Text(
-                                              'Komentar berhasil ditambahkan!')),
+                                              'Komentar sedang ditambahkan...')),
                                       const SizedBox(height: 20),
                                       TextButton(
-                                        child: const Text('OK'),
+                                        child: const Text(
+                                            'Kembali ke Daftar Galang'),
                                         onPressed: () {
                                           Navigator.pop(context);
                                           Navigator.pop(context);
