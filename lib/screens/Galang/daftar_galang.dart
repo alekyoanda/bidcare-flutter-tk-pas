@@ -57,7 +57,8 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
         body: SafeArea(
 
           child:
-            ListView( children: [
+            ListView( 
+              children: [
           
             const SizedBox(height: 20),
 
