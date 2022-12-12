@@ -96,7 +96,7 @@ class _AddTestimoniPageState extends State<AddTestimoniPage> {
                                     return 'Pesan tidak boleh kosong!';
                                   }
                                   else if(value.length <= 2){
-                                    return 'Isi pesan';
+                                    return 'Isi pesan!';
                                   }
                                   return null;
                                 }          
@@ -124,7 +124,7 @@ class _AddTestimoniPageState extends State<AddTestimoniPage> {
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(Colors.white)
                           ),
-                          child: const Text("Buat Testimoni Baru", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                          child: const Text("Buat", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),
