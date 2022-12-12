@@ -12,9 +12,9 @@
 - **Nama aplikasi**: BidCare
 - **Fungsi aplikasi**: Aplikasi ini bertujuan untuk membantu masyarakat yang membutuhkan donasi berupa uang, dimana uang donasinya didapatkan melalui hasil lelang barang. Selain itu, aplikasi ini juga dapat menjadi platform jual beli barang lelang yang 70% hasil dari penjualan barang lelang akan disumbangkan kepada galang dana yang dipilih.
 - **Peran/aktor pengguna aplikasi**: 
-  1. Role umum belum login dan sudah login: Bisa melihat daftar barang lelang dan melihat detail tiap barang lelang, bisa melihat daftar kandidat penerima hasil lelang <br>
+  1. Role umum belum login: Login  atau Register bagi belum mempunyai akun <br>
   2. Role Umum sudah login: Bisa melihat informasi lengkap pada dashboard, melihat dan membuat komentar barang lelang dan galang dana, membuat testimoni
-
+  
 ## Daftar Modul Yang Akan Diimplementasikan
   1. **General User (Bryan)** => Segala sesuatu mencakup dasar sebuah website: dashboard, login, register, logout
   - Model: 
@@ -43,14 +43,18 @@
       - Form komentar
     <br>
   3. **Resipien (Emily)** => Segala sesuatu terkait dengan galang dana/resipien: buat penggalangan dana, lihat daftar galang dana, lihat rincian objek galang dana
-  - Model: 
-    - Galang Dana dengan atribut:  Foreign Key terhadap objek dari model User yang membuat penggalangan dana ini, judul galang dana, gambar, deskripsi galang dana, target uang terkumpul, tanggal berakhirnya galang dana (durasi galang dana), one-to-one relationship dengan objek pada model Rekening Bank penggalang (2 choices => bisa memakai rekening bank akun sendiri atau rekening bank lain), ditujukan untuk keperluan (choices => sendiri, kerabat/keluarga, institusi/lembaga, atau lainnya), status keaktifan galang dana
+  - Model (data respons JSON dari web service Django): 
+    - Galang Dana dengan atribut:  Foreign Key terhadap objek dari model User yang membuat penggalangan dana ini, judul galang dana, gambar, deskripsi galang dana, target uang terkumpul, tanggal berakhirnya galang dana (durasi galang dana), one-to-one relationship dengan objek pada model Rekening Bank penggalang , ditujukan untuk keperluan (choices => pribadi, keluarga, institusi, teman atau lainnya), status keaktifan galang dana
     - Komentar dengan atribut:  Foreign Key terhadap objek dari model User yang membuat berkomentar pada suatu objek Galang Dana, Foreign Key terhadap objek dari model Galang Dana dimana Objek Komentar ini ditujukan, teks komentar, tanggal komentar dibuat
+    Untuk tambah keperluan data galang dana dan komentar:
+      - Akun User dengan atribut: username, first name, dan last name
+      - Akun Bank dengan atribut: nama bank, nama pemilik, dan no rekening
   - Page:
+    - Halaman main galang dana button ke halaman daftar galang dana dan halaman buat galang dana (1 file dart)
     - Halaman ke lihat daftar galang dana (1 file dart)
     - Halaman ke buat penggalangan dana (1 file dart)
-    - Halaman lihat rincian objek galang dana (1 file dart)
-  - Halaman form =
+    - Halaman lihat detail objek galang dana (1 file dart)
+  - Input:
     - Form pembuatan penggalangan dana
     - Form komentar
     <br>
@@ -61,8 +65,11 @@
   - Page:
     - Halaman FAQ (1 file dart)
     - Halaman form pertanyaan (1 file dart)
+    - Halaman display pertanyaan (1 file dart)
+    - Halaman form jawaban (1 file dart)
   - Halaman form:
     - Form pertanyaan
+    - Form jawaban
     <br>
   5. **Testimoni (Danendra)** => Segala sesuatu mencakup cerita dan testimoni dari resipien maupun user umum: form testimoni, kumpulan testimoni
   - Model: 
