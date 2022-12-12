@@ -55,10 +55,7 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
               //replace with our own icon data.
             )),
         backgroundColor: MyColor.whiteGreen,
-        body: SafeArea(
-            child: ListView(children: [
-          const SizedBox(height: 20),
-          FutureBuilder(
+        body: FutureBuilder(
             future: fetchGalang(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
@@ -221,6 +218,6 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
               }
             },
           )
-        ])));
+        );
   }
 }
