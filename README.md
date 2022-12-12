@@ -43,14 +43,18 @@
       - Form komentar
     <br>
   3. **Resipien (Emily)** => Segala sesuatu terkait dengan galang dana/resipien: buat penggalangan dana, lihat daftar galang dana, lihat rincian objek galang dana
-  - Model: 
-    - Galang Dana dengan atribut:  Foreign Key terhadap objek dari model User yang membuat penggalangan dana ini, judul galang dana, gambar, deskripsi galang dana, target uang terkumpul, tanggal berakhirnya galang dana (durasi galang dana), one-to-one relationship dengan objek pada model Rekening Bank penggalang (2 choices => bisa memakai rekening bank akun sendiri atau rekening bank lain), ditujukan untuk keperluan (choices => sendiri, kerabat/keluarga, institusi/lembaga, atau lainnya), status keaktifan galang dana
+  - Model (data respons JSON dari web service Django): 
+    - Galang Dana dengan atribut:  Foreign Key terhadap objek dari model User yang membuat penggalangan dana ini, judul galang dana, gambar, deskripsi galang dana, target uang terkumpul, tanggal berakhirnya galang dana (durasi galang dana), one-to-one relationship dengan objek pada model Rekening Bank penggalang , ditujukan untuk keperluan (choices => pribadi, keluarga, institusi, teman atau lainnya), status keaktifan galang dana
     - Komentar dengan atribut:  Foreign Key terhadap objek dari model User yang membuat berkomentar pada suatu objek Galang Dana, Foreign Key terhadap objek dari model Galang Dana dimana Objek Komentar ini ditujukan, teks komentar, tanggal komentar dibuat
+    Untuk tambah keperluan data galang dana dan komentar:
+      - Akun User dengan atribut: username, first name, dan last name
+      - Akun Bank dengan atribut: nama bank, nama pemilik, dan no rekening
   - Page:
+    - Halaman main galang dana button ke halaman daftar galang dana dan halaman buat galang dana (1 file dart)
     - Halaman ke lihat daftar galang dana (1 file dart)
     - Halaman ke buat penggalangan dana (1 file dart)
-    - Halaman lihat rincian objek galang dana (1 file dart)
-  - Halaman form =
+    - Halaman lihat detail objek galang dana (1 file dart)
+  - Input =
     - Form pembuatan penggalangan dana
     - Form komentar
     <br>
