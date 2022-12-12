@@ -12,27 +12,27 @@ class Pertanyaan {
     Pertanyaan({
       required this.kategori,
       required this.teksPertanyaan,
-      // required this.isAnswered,
-      // required this.pk,
+      required this.isAnswered,
+      required this.pk,
     });
 
-    // int pk;
+    int pk;
     String kategori;
     String teksPertanyaan;
-    // bool isAnswered;
+    bool isAnswered;
 
     factory Pertanyaan.fromJson(Map<String, dynamic> json) => Pertanyaan(
-        // pk: json["pk"],
+        pk: json["pk"],
         kategori: json["fields"]["kategori"],
         teksPertanyaan: json["fields"]["teks_pertanyaan"],
-        // isAnswered: json["fields"]["is_answered"],
+        isAnswered: json["fields"]["is_answered"],
     );
 
     Map<String, dynamic> toJson() => {
-        // "pk": pk,
+        "pk": pk,
         "kategori": kategori,
         "teks_pertanyaan": teksPertanyaan,
-        // "is_answered": isAnswered,
+        "is_answered": isAnswered,
     };
 
     

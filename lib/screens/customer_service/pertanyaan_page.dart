@@ -1,4 +1,5 @@
-import 'package:bidcare/model/pertanyaan.dart';
+import 'package:bidcare/model/faq/pertanyaan.dart';
+import 'package:bidcare/screens/customer_service/jawaban_form.dart';
 import 'package:bidcare/widgets/accordion.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -97,6 +98,15 @@ class _PertanyaanPageState extends State<PertanyaanPage> {
                     shrinkWrap: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => GestureDetector(
+                      onTap: () {
+                      // Route menu ke halaman form
+                      Pertanyaan jawabPertanyaan = Pertanyaan(kategori: snapshot.data![index].kategori, 
+                      teksPertanyaan: snapshot.data![index].teksPertanyaan, isAnswered: true, pk: snapshot.data![index].pk);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => JawabanFormPage(jawabPertanyaan: jawabPertanyaan)),
+                      );
+                      },
                           child: Container(
                           margin: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 7),
