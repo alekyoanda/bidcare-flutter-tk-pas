@@ -35,7 +35,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                 fontWeight: FontWeight.w700,
               ),
             )),
-            Row(
+            Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
