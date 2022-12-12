@@ -24,7 +24,7 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
         return Image.asset('assets/imageGalang/pribadi.png',height: 200,);
      } else if (data == "Institusi") {
         // Sumber -> https://man3kotajambi.mdrsh.id/news/5358/kunjungan-ke-panti-asuhan-teratai-jaya.html
-        return Image.asset('assets/imageGalang/institusi.png',height: 200,);
+        return Image.asset('assets/imageGalang/institusi.jpg',height: 200,);
      } else {
         // Sumber -> https://www.hukumonline.com/berita/a/penjelasan-hukum-soal-tanggung-jawab-pemerintah-atas-bencana-alam-lt600ff4b1191b7/
         return Image.asset('assets/imageGalang/other.png',height: 200,);
