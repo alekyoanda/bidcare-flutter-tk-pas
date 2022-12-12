@@ -99,52 +99,48 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                     itemBuilder: (_, index) => InkWell(
                           child: Container(
                             margin: const EdgeInsets.only(top: 10),
-                            child:
-                            Center(
-                              child: Column (children: [Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 5),
-                                    child:
-                                  const Icon(
-                                    Icons.person,
-                                    color: MyColor.darkGreen,
-                                    size: 20,
-                                  ),
-                                ),
-                                Text('${snapshot.data![index].first_name} ${snapshot.data![index].last_name}',
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ))
-                              ]),
+                            child: Center(
+                                child: Column(children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 6),
-                                    child:
-                                  const Icon(
-                                    Icons.email,
-                                    color: MyColor.darkGreen,
-                                    size: 20,
-                                  ),
-                                ),
-                                Text('${snapshot.data![index].email}',
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ))
-                              ]),
-                              ]
-                            )),
-                            ),
-                                    
-                          )
-                      );
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 5),
+                                      child: const Icon(
+                                        Icons.person,
+                                        color: MyColor.darkGreen,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Text(
+                                        '${snapshot.data![index].first_name} ${snapshot.data![index].last_name}',
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ))
+                                  ]),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 6),
+                                      child: const Icon(
+                                        Icons.email,
+                                        color: MyColor.darkGreen,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Text('${snapshot.data![index].email}',
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ))
+                                  ]),
+                            ])),
+                          ),
+                        ));
               }
             },
           ),
@@ -397,13 +393,13 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                 // ),
                 // TextButton(
                 //   onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => MyDetailGalangPage()
-                    //           )
-                    //         );
-                  // },
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyDetailGalangPage()
+                //           )
+                //         );
+                // },
                 //   child: const Text(
                 //     'Buat Lelang untuk Galang Dana ini!',
                 //     style: TextStyle(
@@ -476,7 +472,8 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                       child: TextButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            tambahKomentar(request, widget.pk.toString(), komentar);
+                            tambahKomentar(
+                                request, widget.pk.toString(), komentar);
                             showDialog(
                               context: context,
                               builder: (context) {
@@ -486,16 +483,27 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                                   elevation: 15,
                                   child: ListView(
                                     padding: const EdgeInsets.only(
-                                        top: 20, bottom: 20),
+                                        top: 40, bottom: 20),
                                     shrinkWrap: true,
                                     children: <Widget>[
-                                      const Icon(Icons.info_outline),
+                                      const Center(
+                                        child: SizedBox(
+                                          height: 30.0,
+                                          width: 30.0,
+                                          child: CircularProgressIndicator(
+                                            value: null,
+                                            strokeWidth: 4.0,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 15),
                                       const Center(
                                           child: Text(
-                                              'Komentar berhasil ditambahkan!')),
+                                              'Komentar sedang ditambahkan...')),
                                       const SizedBox(height: 20),
                                       TextButton(
-                                        child: const Text('OK'),
+                                        child: const Text(
+                                            'Kembali ke Daftar Galang'),
                                         onPressed: () {
                                           Navigator.pop(context);
                                           Navigator.pop(context);
