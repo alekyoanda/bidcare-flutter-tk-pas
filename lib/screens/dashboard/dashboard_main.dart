@@ -31,7 +31,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
               "Selamat Datang di Bidcare :)",
               style: TextStyle(
                 color: MyColor.darkGreen,
-                fontSize: 60,
+                fontSize: 30,
                 fontWeight: FontWeight.w700,
               ),
             )),
@@ -40,6 +40,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                width: 250,
                 margin: const EdgeInsets.only(bottom: 16, left:15, right: 15),
                 child: Align(
                   alignment: Alignment.center,
@@ -55,6 +56,7 @@ class _DashboardMainPageState extends State<DashboardMainPage> {
                 )
               ),
               Container(
+                width: 250,
                 margin: const EdgeInsets.only(bottom: 16),
                 child: Align(
                   alignment: Alignment.center,

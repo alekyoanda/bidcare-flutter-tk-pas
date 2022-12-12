@@ -50,14 +50,17 @@ class _LihatGalangState extends State<LihatGalang> {
           return const Center(child: CircularProgressIndicator());
         } else {
           if (snapshot.data.length == 0) {
-            return Column(
+            return Center(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
                 Text(
-                  "Kamu belum pernah menggalang, yuk mulai Galan Dana di Bidcare :)",
-                  style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                  "Kamu belum pernah menggalang,\n yuk mulai Galang Dana di Bidcare :)",
+                  style: TextStyle(color: MyColor.darkGreen2, fontSize: 40, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 8),
               ],
+            ),
             );
           } else {
             // ini harus diubah jadi return listview builder
