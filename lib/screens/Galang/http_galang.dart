@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:bidcare/model/Galang/galang.dart';
+import 'package:bidcare/model/Galang/akun_galang.dart';
 import 'package:bidcare/model/Galang/komen_galang.dart';
 import 'package:bidcare/model/lelang/barang_lelang_model.dart';
 import 'package:bidcare/model/Galang/bank_galang.dart';
@@ -72,10 +73,11 @@ Future<List<KomenGalang>> fetchKomenGalang(id) async {
   return listKomenGalang;
 }
 
-void tambahKomentar(request, id, komentar) async {
+void tambahKomentar(request, idx, komentar) async {
   try {
     await request
-        .post('https://bidcare.up.railway.app/resipien/ftambahKomentar/$id', {
+        .post('https://bidcare.up.railway.app/resipien/ftambahKomentar/', {
+      "idx" : idx,
       "komentar": komentar,
     });
   } catch (e) {
@@ -120,10 +122,10 @@ Future<List<BankGalang>> fetchBankGalang(id) async {
     },
   );
 
-  var akun = jsonDecode(utf8.decode(response.bodyBytes));
+  var bank = jsonDecode(utf8.decode(response.bodyBytes));
 
   List<BankGalang> listKomenGalang = [];
-  for (var d in akun) {
+  for (var d in bank) {
     if (d != null) {
       listKomenGalang.add(BankGalang.fromJson(d));
     }
@@ -132,3 +134,27 @@ Future<List<BankGalang>> fetchBankGalang(id) async {
   return listKomenGalang;
 }
 
+// User
+
+Future<List<AkunGalang>> fetchAkunGalang(id) async {
+  var url =
+      Uri.parse("https://bidcare.up.railway.app/resipien/akunjson/$id");
+  var response = await http.get(
+    url,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  );
+
+  var akun = jsonDecode(utf8.decode(response.bodyBytes));
+
+  List<AkunGalang> listKomenGalang = [];
+  for (var d in akun) {
+    if (d != null) {
+      listKomenGalang.add(AkunGalang.fromJson(d));
+    }
+  }
+
+  return listKomenGalang;
+}

@@ -531,6 +531,7 @@ class _MyLelangRincianPageState extends State<MyLelangRincianPage> {
                                             MaterialPageRoute(
                                                 builder: (context) => MyDetailGalangPage(
                                                       pk: snapshot.data!.galangDanaTujuan.pk,
+                                                      user : snapshot.data!.galangDanaTujuan.fields.user,
                                                       tujuan: snapshot.data!.galangDanaTujuan.fields.tujuan,
                                                       judul: snapshot.data!.galangDanaTujuan.fields.judul,
                                                       deskripsi:
