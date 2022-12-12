@@ -85,7 +85,6 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
                                         builder: (context) =>
                                             MyDetailGalangPage(
                                               pk: snapshot.data![index].pk,
-                                              user: snapshot.data![index].user,
                                               tujuan:
                                                   snapshot.data![index].tujuan,
                                               judul:
@@ -105,6 +104,7 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
                                               status_keaktifan: snapshot
                                                   .data![index]
                                                   .status_keaktifan,
+                                              user: snapshot.data![index].user,
                                             )));
                               },
                               child: Card(
@@ -129,68 +129,15 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
                                             ? const Text(
                                                 "Aktif",
                                                 style: TextStyle(
-                                                    color: Colors.red),
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.green),
                                               )
                                             : const Text(
                                                 "Tidak Aktif",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.green),
+                                                    color: Colors.red),
                                               ),
-                                              
-                                      ),
-                                      FutureBuilder(
-                                        future: fetchAkunGalang(
-                                            snapshot.data![index].user),
-                                        builder:
-                                            (context, AsyncSnapshot snapshot) {
-                                          if (snapshot.data == null) {
-                                            return const Text(
-                                              "",
-                                            );
-                                          } else {
-                                            return ListView.builder(
-                                                itemCount:
-                                                    snapshot.data!.length,
-                                                shrinkWrap: true,
-                                                itemBuilder:
-                                                    (_, index) => InkWell(
-                                                          child: Container(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 15),
-                                                            child: Center(
-                                                                child: Column(
-                                                                    children: [
-                                                                  Row(
-                                                                      children: [
-                                                                        Container(
-                                                                          margin:
-                                                                              const EdgeInsets.only(right: 5),
-                                                                          child:
-                                                                              const Icon(
-                                                                            Icons.person,
-                                                                            color:
-                                                                                MyColor.darkGreen,
-                                                                            size:
-                                                                                15,
-                                                                          ),
-                                                                        ),
-                                                                        Text(
-                                                                            '${snapshot.data![index].username}',
-                                                                            style:
-                                                                                const TextStyle(
-                                                                              color: MyColor.darkGreen,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontSize: 15,
-                                                                            ))
-                                                                      ]),
-                                                                ])),
-                                                          ),
-                                                        ));
-                                          }
-                                        },
                                       ),
                                       Container(
                                           padding: const EdgeInsets.all(16.0),
@@ -216,8 +163,6 @@ class _MyDaftarGalangState extends State<MyDaftarGalangPage> {
                           ));
                 }
               }
-            },
-          )
-        );
+            }));
   }
 }

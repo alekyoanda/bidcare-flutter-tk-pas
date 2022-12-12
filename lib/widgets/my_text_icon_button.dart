@@ -20,7 +20,7 @@ class MyTextIconButton extends StatelessWidget {
       style: TextButton.styleFrom(
         foregroundColor: MyColor.green1,
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
