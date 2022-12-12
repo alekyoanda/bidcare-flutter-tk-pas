@@ -1,5 +1,6 @@
 import 'package:bidcare/providers/all_barang_lelang.dart';
 import 'package:bidcare/screens/Testimoni/testmoni_page.dart';
+import 'package:bidcare/screens/customer_service/pertanyaan_page.dart';
 import 'package:bidcare/screens/dashboard.dart';
 import 'package:bidcare/screens/home.dart';
 import 'package:bidcare/screens/lelang/lelang_rincian.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
             "/dashboard": (BuildContext context) => MyDashboardPage(),
             "/faq_page": (BuildContext context) => const FAQPage(),
             "/faq_form": (BuildContext context) => const FaqFormPage(),
+            "/pertanyaan_page": (BuildContext context) => const PertanyaanPage(),
             "/testimoni": (BuildContext context) => const TestimoniPage(),
           },
         ),

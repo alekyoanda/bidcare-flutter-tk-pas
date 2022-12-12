@@ -1,4 +1,4 @@
-import 'package:bidcare/model/pertanyaan.dart';
+import 'package:bidcare/model/faq/pertanyaan.dart';
 import 'package:bidcare/screens/customer_service/pertanyaan_page.dart';
 import 'package:bidcare/widgets/accordion.dart';
 import 'package:http/http.dart' as http;

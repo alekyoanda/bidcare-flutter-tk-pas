@@ -1,5 +1,7 @@
+import 'package:bidcare/model/faq/faq.dart';
 import 'package:bidcare/model/faq/pertanyaan.dart';
 import 'package:bidcare/screens/customer_service/fetch_cs.dart';
+import 'package:bidcare/screens/customer_service/pertanyaan_page.dart';
 import 'package:bidcare/widgets/my_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -7,19 +9,20 @@ import 'package:provider/provider.dart';
 import '../../styles/colors.dart';
 import 'faq_page.dart';
 
-class FaqFormPage extends StatefulWidget {
-    const FaqFormPage({super.key});
+class JawabanFormPage extends StatefulWidget {
+    const JawabanFormPage({super.key, required this.jawabPertanyaan});
+    final Pertanyaan jawabPertanyaan;
 
     @override
-    State<FaqFormPage> createState() => _FaqFormState();
+    State<JawabanFormPage> createState() => _JawabanFormState();
 }
 
-class _FaqFormState extends State<FaqFormPage> {
+class _JawabanFormState extends State<JawabanFormPage> {
     final _formKey = GlobalKey<FormState>();
 
-    String _pertanyaan = "";
-    String? _kategori;
-    List<String> listKategori = ['Umum', 'Galang', 'Lelang'];
+    String _jawaban = "";
+    // String? _kategori;
+    // List<String> listKategori = ['Umum', 'Galang', 'Lelang'];
     bool isValid = false;
    
     bool isNumeric(String value){
@@ -36,7 +39,7 @@ class _FaqFormState extends State<FaqFormPage> {
                 title: const Text('Customer Service', style: TextStyle(color: Colors.white),),
                 backgroundColor: MyColor.darkGreen,
                 leading: BackButton(
-                  onPressed: () => Navigator.pushNamed(context, "/faq_page")
+                  onPressed: () => Navigator.pushNamed(context, "/pertanyaan_page")
                 )
             ),
             
@@ -49,56 +52,30 @@ class _FaqFormState extends State<FaqFormPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                                const SizedBox(height: 10),
+
                                 Container(
                                   margin: const EdgeInsets.all(50),
                                   child: const Text(
-                                    "Form Pertanyaan",
+                                    "Form Jawaban",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: MyColor.darkGreen),
                                   )
                                 ),
 
-                                const SizedBox(height: 30),
-                                
                                 Container(
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: DropdownButtonFormField(
-                                        // disabledHint: Text('Pilih Kategori Pertanyaan'),
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        decoration: const InputDecoration(
-                                          border: OutlineInputBorder(),
-                                          ),
-                                        alignment: AlignmentDirectional.centerStart,
-                                        hint: const Text('Pilih Kategori Pertanyaan'),
-                                        value: _kategori,
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        items: listKategori.map((String items) {
-                                            return DropdownMenuItem(
-                                            value: items,
-                                            child: Text(items),
-                                            );
-                                        }).toList(),
-                                      
-                                        onChanged: (String? newValue) {
-                                            setState(() {
-                                            _kategori = newValue!;
-                                            });
-                                        },
-
-                                        validator: (String? newValue) {
-                                            if (newValue == null || newValue.isEmpty) {
-                                                return 'Kategori harus dipilih!';
-                                            }
-                                            return null;
-                                        },
-                                        
-                                    
-                                    ),
+                                  margin: const EdgeInsets.only(
+                                      top: 0, left: 30, bottom: 20, right: 30),
+                                  child: Text(
+                                    widget.jawabPertanyaan.teksPertanyaan,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: MyColor.darkGreen),
+                                )),
                                 
-                                ),
-
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 50),
 
                                 Padding(
                                     // Menggunakan padding sebesar 8 pixels
@@ -106,8 +83,8 @@ class _FaqFormState extends State<FaqFormPage> {
                                     child:
                                     TextFormField(
                                         decoration: InputDecoration(
-                                            hintText: "Aku mau nanya..",
-                                            labelText: "Pertanyaan",
+                                            hintText: "Jawaban..",
+                                            labelText: "Jawaban",
                                             // Menambahkan circular border agar lebih rapi
                                             border: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(5.0),
@@ -116,24 +93,25 @@ class _FaqFormState extends State<FaqFormPage> {
                                         // Menambahkan behavior saat nama diketik 
                                         onChanged: (String? value) {
                                             setState(() {
-                                                _pertanyaan = value!;
+                                                _jawaban = value!;
                                             });
                                         },
                                         // Menambahkan behavior saat data disimpan
                                         onSaved: (String? value) {
                                             setState(() {
-                                                _pertanyaan = value!;
+                                                _jawaban = value!;
                                             });
                                         },
                                         // Validator sebagai validasi form
                                         validator: (String? value) {
                                             if (value == null || value.isEmpty) {
-                                                return 'Pertanyaan tidak boleh kosong!';
+                                                return 'Jawaban tidak boleh kosong!';
                                             }
                                             return null;
                                         },
                                     ),
                                 ),
+
 
                                 const SizedBox(height: 120),
 
@@ -141,39 +119,61 @@ class _FaqFormState extends State<FaqFormPage> {
                                   backgroundColor: MyColor.green1,
                                   onPressed: () {
                                       if (_formKey.currentState!.validate()) {
-                                        _kategori = _kategori == "Umum" ? "UMUM" : 
-                                                    _kategori == "Galang" ? "GALANG" : "LELANG";
-                                        // Pertanyaan newPertanyaan = Pertanyaan(kategori: _kategori!, teksPertanyaan: _pertanyaan);
+                                        // List<String> pertanyaan = [widget.jawabPertanyaan.kategori, widget.jawabPertanyaan.teksPertanyaan];
                                         // inputPertanyaan(newPertanyaan);
-                                        buatPertanyaan(request, _pertanyaan, _kategori);
+                                        buatFaq(request, widget.jawabPertanyaan.teksPertanyaan, _jawaban, widget.jawabPertanyaan.pk) ;
                                         
                                         isValid = true;
 
                                         Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => const FAQPage()),
+                                            MaterialPageRoute(builder: (context) => const PertanyaanPage()),
                                         );
                                           
                                       }
 
-                                      
-
                                       isValid? showDialog(context: context, builder: (BuildContext context) { 
                                         return const AlertDialog(
                                         title: Text("Terima kasih!"),
-                                          content: Text("Pertanyaan berhasil dikirim, kami akan menjawab secepatnya"),
+                                          content: Text("Pertanyaan berhasil dijawab"),
                                         );
                                         }
                                       ) : null;
 
-                                      
                                   },
+
                                   text: const Text(
-                                      "Kirim",
+                                      "Jawab",
                                       style: TextStyle(color: Colors.white),
                                   ),
                                 ),
+
+                                const SizedBox(height: 20),
                               
+                                MyElevatedButton(
+                                  backgroundColor: const Color.fromARGB(255, 140, 13, 13),
+                                  onPressed: () {
+                                    deletePertanyaan(widget.jawabPertanyaan.pk);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => const PertanyaanPage()),
+                                    );
+
+                                    showDialog(context: context, builder: (BuildContext context) { 
+                                      return const AlertDialog(
+                                      title: Text("Succeed!"),
+                                        content: Text("Pertanyaan berhasil dihapus"),
+                                      );
+                                      }
+                                    );
+
+                                  },
+
+                                  text: const Text(
+                                      "Delete",
+                                      style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
                                 
                             ], 
                         ),
