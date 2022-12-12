@@ -3,6 +3,7 @@ import 'package:bidcare/styles/colors.dart';
 import 'package:bidcare/screens/Galang/http_galang.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:bidcare/screens/lelang/lelang_rincian.dart';
 
 class MyDetailGalangPage extends StatefulWidget {
   final int pk;
@@ -132,14 +133,16 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
           // Detail Tanggal
           Container(
               color: MyColor.whiteGreen,
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
+              margin: const EdgeInsets.only(top: 10, bottom: 10), 
+              padding: const EdgeInsets.only(left: 35, right: 35), 
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Tanggal Pembuatan
                   Column(children: [
                     Container(
                       margin:
-                          const EdgeInsets.only(top: 40, left: 40, right: 20),
+                          const EdgeInsets.only(top: 40,),
                       child: const Icon(
                         Icons.calendar_month,
                         color: MyColor.darkGreen,
@@ -148,7 +151,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                     ),
                     Container(
                       margin:
-                          const EdgeInsets.only(top: 3, left: 40, right: 20),
+                          const EdgeInsets.only(top: 3,),
                       child: const Text(
                         textAlign: TextAlign.center,
                         "Tanggal Pembuatan",
@@ -160,7 +163,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(
-                          left: 40, right: 20, bottom: 40),
+                           bottom: 40),
                       child: Text(
                         textAlign: TextAlign.center,
                         "${widget.tanggal_pembuatan.day} - ${widget.tanggal_pembuatan.month} - ${widget.tanggal_pembuatan.year}",
@@ -175,7 +178,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                   Column(children: [
                     Container(
                       margin:
-                          const EdgeInsets.only(top: 40, left: 40, right: 20),
+                          const EdgeInsets.only(top: 40, left: 15, right: 15),
                       child: const Icon(
                         Icons.hourglass_bottom,
                         color: MyColor.darkGreen,
@@ -184,7 +187,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                     ),
                     Container(
                       margin:
-                          const EdgeInsets.only(top: 3, left: 40, right: 20),
+                          const EdgeInsets.only(top: 3, ),
                       child: const Text(
                         textAlign: TextAlign.center,
                         "Tanggal Berakhir",
@@ -196,7 +199,7 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(
-                          left: 40, right: 20, bottom: 40),
+                          bottom: 40),
                       child: Text(
                         textAlign: TextAlign.center,
                         "${widget.tanggal_berakhir.day} - ${widget.tanggal_berakhir.month} - ${widget.tanggal_berakhir.year}",
@@ -256,12 +259,14 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                               itemBuilder: (_, index) => InkWell(
                                     child: GestureDetector(
                                       onTap: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) => MyDetailGalangPage()
-                                        //           )
-                                        //         );
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>  MyLelangRincianPage(
+                                                    lelang_id: snapshot.data![index].pk,
+                                                  ),
+                                                  )
+                                                );
                                       },
                                       child: Expanded(
                                         child: Card(
@@ -680,6 +685,9 @@ class _MyDetailGalangState extends State<MyDetailGalangPage> {
                         ));
               }
             },
+          ),
+          const SizedBox(
+            height: 20.0,
           ),
         ])));
   }
