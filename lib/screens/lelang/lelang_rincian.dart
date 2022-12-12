@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:bidcare/screens/Galang/detail_galang.dart';
 import 'package:bidcare/model/lelang/rincian_barang_lelang_models.dart';
 import 'package:bidcare/providers/bid_barang_lelang.dart';
 import 'package:bidcare/styles/colors.dart';
@@ -524,7 +525,26 @@ class _MyLelangRincianPageState extends State<MyLelangRincianPage> {
                                     child: MyElevatedButton(
                                         text: const Text(
                                             "Lihat Detail Galang Dana"),
-                                        onPressed: () {}),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => MyDetailGalangPage(
+                                                      pk: snapshot.data!.galangDanaTujuan.pk,
+                                                      tujuan: snapshot.data!.galangDanaTujuan.fields.tujuan,
+                                                      judul: snapshot.data!.galangDanaTujuan.fields.judul,
+                                                      deskripsi:
+                                                          snapshot.data!.galangDanaTujuan.fields.deskripsi,
+                                                      terkumpul:
+                                                          snapshot.data!.galangDanaTujuan.fields.terkumpul,
+                                                      target: snapshot.data!.galangDanaTujuan.fields.target,
+                                                      tanggal_pembuatan: snapshot.data!.galangDanaTujuan.fields.tanggalPembuatan,
+                                                      tanggal_berakhir: snapshot.data!.galangDanaTujuan.fields.tanggalBerakhir,
+                                                      status_keaktifan: snapshot.data!.galangDanaTujuan.fields.statusKeaktifan,
+                                                    )
+                                                  )
+                                                );
+                                        }),
                                   )
                                 ],
                               )

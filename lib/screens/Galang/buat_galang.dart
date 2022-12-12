@@ -508,16 +508,16 @@ class _MyBuatGalangState extends State<MyBuatGalangPage> {
                           style: ButtonStyle(
                             padding:
                                 MaterialStateProperty.all(
-                                    const EdgeInsets.all(18.0)),
+                                    const EdgeInsets.only(top:10, bottom:10, left:30, right: 30)),
                             backgroundColor:
-                                MaterialStateProperty.all(MyColor.darkGreen2),
+                                MaterialStateProperty.all(  MyColor.lightGreen1),
                           ),
                           child: const Text(
                             "Simpan",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 17,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              color: MyColor.darkGreen),
                           ),
                         ),
                       ),

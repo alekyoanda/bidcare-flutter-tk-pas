@@ -25,7 +25,7 @@ class _MyGalangMainPageState extends State<MyGalangMainPage> {
               Container(
                   padding: const EdgeInsets.only(top: 200),
                   child: Image.asset('assets/imageGalang/helpp.png',
-                    height: 50,
+                    height: 80,
                     scale: 2.5,
                     opacity: const AlwaysStoppedAnimation<double>(0.5)
                 ),
