@@ -48,14 +48,17 @@ class _LihatLelangState extends State<LihatLelang> {
           return const Center(child: CircularProgressIndicator());
         } else {
           if (snapshot.data.length == 0) {
-            return Column(
+            return Center(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
                 Text(
-                  "Kamu belum pernah melelang, yuk mulai Lelang di Bidcare :)",
-                  style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                  "Kamu belum pernah melelang,\n yuk mulai Lelang di Bidcare :)",
+                  style: TextStyle(color: MyColor.darkGreen2, fontSize: 40, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 8),
               ],
+            ),
             );
           } else {
             // ini harus diubah jadi return listview builder
